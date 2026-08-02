@@ -11,6 +11,9 @@ from CalorieCounter.models import *
 from CalorieCounter.forms import *
 
 
+def home_page(request):
+    return render(request, "home.html")
+
 def register_page(request):
     
     if request.method == "POST":
@@ -57,9 +60,9 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     messages.success(request, 'Logout successfully')
-    return redirect('login_page')
-@login_required
+    return redirect('home_page')
 
+@login_required
 def dashboard_page(request):
     
     try:
@@ -77,14 +80,24 @@ def dashboard_page(request):
         total_count = Count('calorie')
     )
     
-    total_caloire = total_consumed_calories['total']
-    less_more = bmr - total_caloire
+    total_caloire = total_consumed_calories['total'] or 0
+    less_more = abs(bmr - total_caloire)
     
-    if bmr > total_caloire:
+    if bmr == 0:
+        suggestion = "Please update your profile to calculate your daily calorie requirement."
+
+    elif total_caloire == 0:
+         suggestion = "No calorie record found for today."
+
+    elif total_caloire < bmr:
         suggestion = "Your calorie intake is below your daily requirement."
-    else:
+
+    elif total_caloire > bmr:
         suggestion = "Your calorie intake has exceeded your daily requirement."
-    
+
+    else:
+        suggestion = "Great! You have met your daily calorie requirement."
+        
     
     
     context ={
@@ -144,7 +157,7 @@ def update_profile(request):
     
     return render(request, 'master/base-form.html', context)
 
-
+@login_required
 def consumed_calories_list(request):
     
     consumed_data = ConsumedCalories.objects.filter(consumed_by = request.user)
@@ -155,7 +168,7 @@ def consumed_calories_list(request):
     
     return render(request, 'calorie-list.html', context)
 
-
+@login_required
 def add_calorie(request):
     
     if request.method == "POST":
@@ -182,7 +195,7 @@ def add_calorie(request):
     
     
 
-
+@login_required
 def Update_calorie(request, id):
     
     try:
@@ -214,7 +227,7 @@ def Update_calorie(request, id):
     return render(request, 'master/base-form.html', context)
     
     
-
+@login_required
 def delate_calorie(request, id):
     
     try:
@@ -226,4 +239,6 @@ def delate_calorie(request, id):
     data.delete()
     messages.success(request, 'successfully')
     return redirect('consumed_calories_list')
-    
+
+
+

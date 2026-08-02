@@ -1,20 +1,86 @@
 {% extends 'master/base.html' %}
 
+{% block title %}Profile{% endblock %}
 
 {% block body %}
 
-<div class="container">
-    {% include 'master/message.html' %}
-    <h1>Profile Info</h1>
-    <h2>Name: {{request.user.user_info.name}}</h2>
-    <p>
-        BMR: {{request.user.user_info.bmr}}
-    </p>
-    <a href="{% url 'update_profile' %}" class="btn btn-primary">Profile updated</a>
+<div class="row justify-content-center">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="bi bi-person-circle me-2"></i>
+                    Profile Information
+                </h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="text-center mb-4">
+
+                    <div class="profile-avatar mx-auto mb-3">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                    <h4 class="mb-1">
+                        {{ request.user.user_info.name }}
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        {{ request.user.username }}
+                    </p>
+
+                </div>
+
+                <hr>
+
+                <div class="row mb-3">
+
+                    <div class="col-6">
+                        <strong>Name</strong>
+                    </div>
+
+                    <div class="col-6 text-end">
+                        {{ request.user.user_info.name }}
+                    </div>
+
+                </div>
+
+                <div class="row mb-4">
+
+                    <div class="col-6">
+                        <strong>BMR</strong>
+                    </div>
+
+                    <div class="col-6 text-end">
+                        <span class="badge bg-success fs-6">
+                            {{ request.user.user_info.bmr }} kcal/day
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="d-grid">
+
+                    <a href="{% url 'update_profile' %}"
+                       class="btn btn-primary">
+
+                        <i class="bi bi-pencil-square me-1"></i>
+                        Update Profile
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
-    
-{% endblock body %}
 
-
-    
+{% endblock %}

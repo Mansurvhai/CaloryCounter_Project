@@ -1,0 +1,206 @@
+{% extends 'master/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<section class="py-5">
+
+    <div class="row align-items-center">
+
+        <!-- Left Side -->
+        <div class="col-lg-6">
+
+            <span class="badge bg-primary mb-3">
+                Healthy Lifestyle
+            </span>
+
+            <h1 class="display-5 fw-bold mb-3">
+                Track Your Daily Calories
+            </h1>
+
+            <p class="lead text-muted mb-4">
+                Track your daily calorie intake, monitor your progress,
+                and maintain a healthier lifestyle with ease.
+            </p>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'dashboard_page' %}" class="btn btn-primary me-2">
+                    Dashboard
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'register_page' %}" class="btn btn-primary me-2">
+                    Get Started
+                </a>
+
+                <a href="{% url 'login_page' %}" class="btn btn-outline-primary">
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+        <!-- Right Side -->
+        <div class="col-lg-6 text-center mt-5 mt-lg-0">
+
+            <i class="bi bi-heart-pulse-fill hero-icon"></i>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+
+    <div class="text-center mb-5">
+
+        <h2 class="fw-bold">Why Choose CalorieCounter?</h2>
+
+        <p class="text-muted">
+            Everything you need to monitor your daily calorie intake.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="card h-100 text-center">
+
+                <div class="card-body p-4">
+
+                    <i class="bi bi-fire feature-icon"></i>
+
+                    <h5 class="mt-3">Track Calories</h5>
+
+                    <p class="text-muted mb-0">
+                        Record your daily food intake and keep track of consumed calories.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card h-100 text-center">
+
+                <div class="card-body p-4">
+
+                    <i class="bi bi-calculator feature-icon"></i>
+
+                    <h5 class="mt-3">Daily Calorie Goal</h5>
+
+                    <p class="text-muted mb-0">
+                        Automatically calculates your daily calorie requirement from your profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card h-100 text-center">
+
+                <div class="card-body p-4">
+
+                    <i class="bi bi-speedometer2 feature-icon"></i>
+
+                    <h5 class="mt-3">Dashboard</h5>
+
+                    <p class="text-muted mb-0">
+                        View your calorie summary and monitor your daily progress.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Call To Action -->
+<section class="py-5">
+
+    <div class="card">
+
+        <div class="card-body text-center p-5">
+
+            <h2 class="fw-bold mb-3">
+                Start Your Healthy Journey Today
+            </h2>
+
+            <p class="text-muted mb-4">
+                Join CalorieCounter to monitor your daily calorie intake and maintain a healthier lifestyle.
+            </p>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'dashboard_page' %}" class="btn btn-primary">
+                    Go to Dashboard
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'register_page' %}" class="btn btn-primary me-2">
+                    Create Account
+                </a>
+
+                <a href="{% url 'login_page' %}" class="btn btn-outline-primary">
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+<footer class="border-top py-4 mt-5">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-6 text-center text-md-start">
+
+                <p class="mb-0 text-muted">
+                    © 2026 CalorieCounter
+                </p>
+
+            </div>
+
+            <div class="col-md-6 text-center text-md-end">
+
+                <p class="mb-0 text-muted">
+                    Developed by <strong>Mansurr</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+{% endblock %}

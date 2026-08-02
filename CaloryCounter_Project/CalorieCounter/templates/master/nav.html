@@ -1,36 +1,94 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container">
-    <a class="navbar-brand" href="#">CaloryCounter</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        
-        {% if request.user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'dashboard_page' %}">Dashboard</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'profile_page' %}">Profile</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'consumed_calories_list' %}">Consumed Calories</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout_page' %}">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login_page' %}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register_page' %}">Register</a>
-        </li>
-        {% endif %}
-          
-       
-      </ul>
+<nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="{% url 'home_page' %}">
+            <!-- <i class="bi bi-fire me-1 text-danger"></i> -->
+            CalorieCounter
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            {% if request.user.is_authenticated %}
+
+            
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home_page' %}">
+                        <i class="bi bi-house-door me-1"></i>
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard_page' %}">
+                        <i class="bi bi-speedometer2 me-1"></i>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'consumed_calories_list' %}">
+                        <i class="bi bi-fire me-1"></i>
+                        Calories
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile_page' %}">
+                        <i class="bi bi-person-circle me-1"></i>
+                        Profile
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+                    <a class="btn btn-outline-danger btn-sm"
+                    href="{% url 'logout_page' %}">
+                        <i class="bi bi-box-arrow-right me-1"></i>
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+                        
+            {% else %}
+
+            <ul class="navbar-nav align-items-lg-center me-auto ms-3">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home_page' %}">
+                            Home
+                        </a>
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login_page' %}">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>
+                            Login
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-primary btn-sm"
+                        href="{% url 'register_page' %}">
+                            Register
+                        </a>
+                    </li>
+
+             </ul>
+            {% endif %}
+
+        </div>
+
     </div>
-  </div>
 </nav>
