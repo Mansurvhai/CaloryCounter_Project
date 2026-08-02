@@ -4,6 +4,6 @@ from CalorieCounter.models import *
 
 admin.site.register([
     User,
-    basicInfoModel,
+    BasicInfoModel,
     ConsumedCalories
 ])

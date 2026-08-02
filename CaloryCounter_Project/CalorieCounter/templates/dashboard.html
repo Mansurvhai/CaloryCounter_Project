@@ -1,0 +1,68 @@
+{% extends 'master/base.html' %} {% block body %}
+<div class="container">
+  {% include 'master/message.html' %}
+  <h1>Daily, Consumed Calories</h1>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-header">Consumed Calories</div>
+        <div class="card-body">
+          <h5 class="card-title">{{consumed_calories}} Kcal</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-header">Required Calories</div>
+        <div class="card-body">
+          <h5 class="card-title">{{required_calories}} Kcal</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-header">Less/More Calories</div>
+        <div class="card-body">
+          <h5 class="card-title">{{less_more}} Kcal</h5>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+  <h6 class="text-danger mt-3">
+    Suggestion: - {{suggestion}}
+  </h6>
+
+  <h2 class="mt-4">Today Consumed Calories - {{total_count}}</h2>
+
+  <table class="table table-striped"> 
+    <thead>
+    <tr>
+      <th scope="col">#SL</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Consumed Calorie</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in today_consumed_date %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{data.item_name}}</td>
+            <td>{{data.calorie}}</td>
+            <td>
+                <a href="{% url 'Update_calorie' data.id %}">Edit</a>
+                <a href="{% url 'delate_calorie' data.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+    </table>
+
+
+
+</div>
+{% endblock body %}
